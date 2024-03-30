@@ -1,0 +1,15 @@
+.list {
+  list-style: none;
+}
+.reviewItem {
+  color: blueviolet;
+  font-weight: 600;
+}
+.reviewItemTotal {
+  color: blanchedalmond;
+  font-weight: 900;
+}
+.reviewItemPos {
+  font-weight: 600;
+  color: brown;
+}

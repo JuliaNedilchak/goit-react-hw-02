@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Description from "./components/Description/Description";
 import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
@@ -9,13 +9,12 @@ const App = () => {
     neutral: 0,
     bad: 0,
   };
-  const [feedback, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [feedback, setFeedback] = useState(() => {
+    const stringifyFeedback = localStorage.getItem("feedbackKey");
+    const parsedFeedback = JSON.parse(stringifyFeedback) ?? initialFeedback;
+    return parsedFeedback;
   });
   const updateFeedback = (feedbackType) => {
-    // Тут використовуй сеттер, щоб оновити стан
     setFeedback({ ...feedback, [feedbackType]: feedback[feedbackType] + 1 });
   };
   const totalFeedback = feedback.good + feedback.neutral + feedback.bad;
@@ -23,6 +22,10 @@ const App = () => {
     setFeedback(initialFeedback);
   };
   const positiveRate = Math.round((feedback.good / totalFeedback) * 100);
+
+  useEffect(() => {
+    localStorage.setItem("feedbackKey", JSON.stringify(feedback));
+  }, [feedback]);
 
   return (
     <div>

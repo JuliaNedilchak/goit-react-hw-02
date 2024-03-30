@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  gap: 15px;
+}
+.button {
+  color: aquamarine;
+  background-color: blue;
+  border: 1px solid indigo;
+}
